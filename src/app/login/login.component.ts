@@ -51,26 +51,26 @@ export class LoginComponent {
         if ( !(email && password && firstName && lastName )) {
           return // TODO: Mostrar mensaje de error
         }
-        
+
         const user = {
           email,
           password,
           firstName,
           lastName
         }
-        
+
         this.signUp( user )
-        
+
       }
     } else {
       // Verificar que email y password no tengan errores
       if ( !(this.email?.errors || this.password?.errors) ) {
         if (!(email && password)) {
-          return 
+          return
         }
         this.signIn(email, password)
       }
-      
+
     }
   }
 
@@ -78,9 +78,9 @@ export class LoginComponent {
     this.authService.signUp({
       ...user
     }).subscribe({
-      next: (value: CreatedUser) => {
+      next: ({ password, ...value}: CreatedUser) => {
         localStorage.setItem('user', JSON.stringify(value))
-        this.signIn( value.email, value.password )
+        this.signIn( value.email, password )
       }
     })
   }
@@ -114,5 +114,5 @@ export class LoginComponent {
     return this.sessionForm.get('lastName');
   }
 
-  
+
 }
