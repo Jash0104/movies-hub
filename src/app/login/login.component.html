@@ -16,7 +16,7 @@
             class="absolute w-[calc(100%_/_2)] h-7 bg-white rounded-t-lg transition-transform duration-300 ease-in-out border-br-[-50%]"
             [ngClass]="{
               'translate-x-0': !isSignUp,
-              'translate-x-[95%] sm:translate-x-[96%]': isSignUp }"
+              'translate-x-[95%] sm:translate-x-[96.5%] ': isSignUp }"
           ></div>
           <div class="relative flex justify-between items-center h-full mt-1">
             <span
@@ -44,17 +44,59 @@
     </div>
 
     <div class=" sm:mx-auto sm:w-full sm:max-w-md p-1 pt-0">
-      <div class="bg-white p-10 rounded-b-lg rounded-tl-">
+      <div class="bg-white p-10 rounded-b-lg min-w-[20rem]">
           <h2 class="mb-8 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             {{ !isSignUp ? "Sign in to your account" : "Create account"}}
           </h2>
 
-          <form class="space-y-6" action="#" method="POST">
+          <form class="space-y-6" [formGroup]="sessionForm" (submit)="onSubmit()">
+
+            @if ( isSignUp ) {
+              <div class="flex gap-x-1 sm:flex-row flex-col">
+                <div class="w-full">
+                  <label for="firstName" class="block text-sm/6 font-medium text-gray-900">First Name</label>
+                  <div class="mt-2">
+                    <input formControlName="firstName" id="firstName" name="firstName" type="text" autocomplete="name" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+                  </div>
+                  @if (firstName?.errors?.['required'] && firstName?.touched) {
+                    <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                      <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                      <span class="text-xs">Field required</span>
+                    </div>
+                  }
+                </div>
+                <div class="w-full mt-6 sm:mt-0">
+                  <label for="lastName" class="block text-sm/6 font-medium text-gray-900">Last Name</label>
+                  <div class="mt-2">
+                    <input formControlName="lastName" id="lastName" name="lastName" type="text" autocomplete="lastName" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+                  </div>
+                  @if (lastName?.errors?.['required'] && lastName?.touched) {
+                    <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                      <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                      <span class="text-xs">Field required</span>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
             <div>
               <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
               <div class="mt-2">
-                <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
+                <input formControlName="email" id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
               </div>
+              @if (email?.errors?.['required'] && email?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field required</span>
+                </div>
+              }
+              @if (email?.errors?.['email'] && email?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field must be an email</span>
+                </div>
+              }
             </div>
 
             <div>
@@ -67,8 +109,20 @@
                 }
               </div>
               <div class="mt-2">
-                <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
+                <input formControlName="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
               </div>
+              @if (password?.errors?.['required'] && password?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field required</span>
+                </div>
+              }
+              @if (password?.errors?.['minlength'] && password?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Password must contain at least 6 characters</span>
+                </div>
+              }
             </div>
 
             <div>
@@ -78,7 +132,9 @@
             </div>
           </form>
           @if ( !isSignUp ) {
-            <p class="mt-10 text-center text-sm/6 text-gray-500">Don't have an account yet? <strong class="font-semibold text-indigo-600 hover:text-indigo-500">Create One</strong></p>
+            <p class="mt-10 text-center text-sm/6 text-gray-500">Don't have an account yet?
+              <strong class="font-semibold text-indigo-600 hover:text-indigo-500 cursor-pointer" (click)="toggleState()">Create One</strong>
+            </p>
           }
       </div>
     </div>
