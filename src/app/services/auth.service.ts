@@ -17,7 +17,7 @@ export class AuthService {
 
   signUp(user: User): Observable<CreatedUser> {
     return this.http.post<CreatedUser>(`${this.apiUrl}/auth/create`, {
-      user
+      ...user
     })
   }
 
