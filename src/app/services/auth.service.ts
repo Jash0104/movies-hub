@@ -9,7 +9,7 @@ import { CreatedUser, SignInUser } from '../interfaces/user.interface';
 })
 export class AuthService {
 
-  private apiUrl = "http:localhost:3000/api"
+  private apiUrl = "http://localhost:3000/api"
 
   constructor(
     private readonly http: HttpClient
@@ -28,5 +28,5 @@ export class AuthService {
     })
   }
 
-  
+
 }
