@@ -6,25 +6,36 @@ import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
+
 import { AuthService } from '../services/auth.service';
 import { CreatedUser, SignInUser, User } from '../interfaces/user.interface';
+import { ToastComponent } from '../shared/toast/toast.component';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ NgClass, ReactiveFormsModule, FontAwesomeModule],
+  imports: [ NgClass, ReactiveFormsModule, FontAwesomeModule, ToastComponent ],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
 
   constructor(
     private readonly authService: AuthService,
+    private readonly toastService: ToastService,
     private readonly router: Router
   ) {}
 
-  icons = {
-    warning: faCircleExclamation
+  handleErrors( message: string ) {
+    this.toastService.showToast({
+      type: 'error',
+      title: 'Opps...',
+      message
+    })
   }
+
+
+  //* HANDLE SIGN-IN AND SIGN-UP
 
   isSignUp = true;
 
@@ -32,13 +43,6 @@ export class LoginComponent {
     this.isSignUp = !this.isSignUp;
     this.sessionForm.markAsUntouched()
   }
-
-  sessionForm = new FormGroup({
-    firstName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
-    lastName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
-  })
 
   onSubmit() {
     this.sessionForm.markAllAsTouched()
@@ -55,7 +59,7 @@ export class LoginComponent {
         const user = {
           email,
           password,
-          firstName,
+          name: firstName,
           lastName
         }
 
@@ -80,6 +84,10 @@ export class LoginComponent {
     }).subscribe({
       next: ({ email, password }: SignInUser) => {
         this.signIn( email, password )
+      },
+      error: (error) => {
+        console.log(error);
+        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message )
       }
     })
   }
@@ -90,14 +98,31 @@ export class LoginComponent {
       password
     }).subscribe({
       next: ({ token, ...user }: CreatedUser) => {
-        console.log(token);
+
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('auth', token)
-        // this.router.navigateByUrl('app')
+        this.router.navigateByUrl('app')
+      },
+      error: (error) => {
+        console.log(error);
+        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message )
       }
     })
   }
 
+  //* VARIABLES USED IN THE TEMPLATE
+  icons = {
+    warning: faCircleExclamation
+  }
+
+  sessionForm = new FormGroup({
+    firstName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
+    lastName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  })
+
+ //* GETTERS FOR FORM PROPERTIES
   get email() {
     return this.sessionForm.get('email');
   }

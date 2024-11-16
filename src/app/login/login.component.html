@@ -1,4 +1,4 @@
-
+<app-toast></app-toast>
 <div class="flex min-h-full flex-col justify-center items-center px-6 py-12 lg:px-8 bg-slate-100">
 
   <img class="mx-auto mb-10 h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
@@ -68,7 +68,7 @@
                 <div class="w-full mt-6 sm:mt-0">
                   <label for="lastName" class="block text-sm/6 font-medium text-gray-900">Last Name</label>
                   <div class="mt-2">
-                    <input formControlName="lastName" id="lastName" name="lastName" type="text" autocomplete="lastName" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+                    <input formControlName="lastName" id="lastName" name="lastName" type="text" autocomplete="cc-name" required class="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
                   </div>
                   @if (lastName?.errors?.['required'] && lastName?.touched) {
                     <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">

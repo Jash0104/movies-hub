@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   signIn({ email, password }: SignInUser): Observable<CreatedUser> {
-    return this.http.post<CreatedUser>(`${this.apiUrl}/auth`, {
+    return this.http.post<CreatedUser>(`${this.apiUrl}/auth/`, {
       email,
       password
     })
