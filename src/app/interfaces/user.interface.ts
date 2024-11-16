@@ -7,7 +7,8 @@ export interface User {
 }
 
 export interface CreatedUser extends User {
-  id: string
+  id: string,
+  token: string
 }
 
 export interface SignInUser {

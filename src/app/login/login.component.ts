@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 import { AuthService } from '../services/auth.service';
-import { CreatedUser, User } from '../interfaces/user.interface';
+import { CreatedUser, SignInUser, User } from '../interfaces/user.interface';
 
 @Component({
   selector: 'app-login',
@@ -78,9 +78,8 @@ export class LoginComponent {
     this.authService.signUp({
       ...user
     }).subscribe({
-      next: ({ password, ...value}: CreatedUser) => {
-        localStorage.setItem('user', JSON.stringify(value))
-        this.signIn( value.email, password )
+      next: ({ email, password }: SignInUser) => {
+        this.signIn( email, password )
       }
     })
   }
@@ -90,8 +89,9 @@ export class LoginComponent {
       email,
       password
     }).subscribe({
-      next: ({ token }: { token: string }) => {
+      next: ({ token, ...user }: CreatedUser) => {
         console.log(token);
+        localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('auth', token)
         // this.router.navigateByUrl('app')
       }
