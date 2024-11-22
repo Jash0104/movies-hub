@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces';
 import { Observable } from 'rxjs';
-import { CreatedUser, SignInUser } from '../interfaces/user.interface';
+import { CreatedUser, LoggedUser, SignInUser } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,12 @@ export class AuthService {
       email,
       password
     })
+  }
+
+  get currentUser() {
+    const localUser = localStorage.getItem('user') || '{}'
+    const user = JSON.parse(localUser)
+    return user as LoggedUser
   }
 
 

@@ -1,16 +1,17 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 
-import { AuthService } from '../services/auth.service';
-import { CreatedUser, SignInUser, User } from '../interfaces/user.interface';
+import { AuthService } from '../../services/auth.service';
+import { CreatedUser, SignInUser, User } from '../../interfaces/user.interface';
 import { ToastComponent } from '../shared/toast/toast.component';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../../services/toast.service';
+import { ToastMessage } from '../../interfaces';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ import { ToastService } from '../services/toast.service';
   imports: [ NgClass, ReactiveFormsModule, FontAwesomeModule, ToastComponent ],
   templateUrl: './login.component.html',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
@@ -26,16 +27,26 @@ export class LoginComponent {
     private readonly router: Router
   ) {}
 
-  handleErrors( message: string ) {
+  ngOnInit(): void {
+    this.getPreviousRouterInfo()
+  }
+
+  handleErrors( message: string, title: string ) {
     this.toastService.showToast({
       type: 'error',
-      title: 'Opps...',
+      title,
       message
     })
   }
 
-
   //* HANDLE SIGN-IN AND SIGN-UP
+  getPreviousRouterInfo() {
+    const previousRouterInfo = this.router.lastSuccessfulNavigation?.extras.info
+    if ( previousRouterInfo ) {
+      const errorInfo = previousRouterInfo as ToastMessage
+      this.handleErrors( errorInfo.message, errorInfo.title )
+    }
+  }
 
   isSignUp = true;
 
@@ -53,7 +64,7 @@ export class LoginComponent {
       if ( this.sessionForm.valid ) {
 
         if ( !(email && password && firstName && lastName )) {
-          return // TODO: Mostrar mensaje de error
+          return
         }
 
         const user = {
@@ -86,8 +97,7 @@ export class LoginComponent {
         this.signIn( email, password )
       },
       error: (error) => {
-        console.log(error);
-        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message )
+        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message, 'Opps...' )
       }
     })
   }
@@ -101,14 +111,15 @@ export class LoginComponent {
 
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('auth', token)
-        this.router.navigateByUrl('app')
+        this.router.navigateByUrl('movies')
       },
       error: (error) => {
-        console.log(error);
-        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message )
+        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message, 'Opps...' )
       }
     })
   }
+
+
 
   //* VARIABLES USED IN THE TEMPLATE
   icons = {
