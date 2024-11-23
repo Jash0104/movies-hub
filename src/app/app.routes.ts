@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AppLayoutComponent } from './components/app-layout/app-layout.component';
 import { authGuard } from './guards';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { MoviesGridComponent } from './components/movies-grid/movies-grid.component';
 
 export const routes: Routes = [
   {
@@ -23,7 +24,11 @@ export const routes: Routes = [
         path: "details/:id",
         canActivate: [authGuard],
         component: MovieDetailsComponent
+      },
+      {
+        path: "",
+        component: MoviesGridComponent
       }
-    ]
+    ],
   },
 ];

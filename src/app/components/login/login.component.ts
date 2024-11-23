@@ -1,22 +1,18 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
-
-import { AuthService } from '../../services/auth.service';
-import { CreatedUser, SignInUser, User } from '../../interfaces/user.interface';
-import { ToastComponent } from '../shared/toast/toast.component';
-import { ToastService } from '../../services/toast.service';
-import { ToastMessage } from '../../interfaces';
+import { CreatedUser, SignInUser, ToastMessage, User } from '@/app/interfaces';
+import { AuthService, ToastService } from '@/app/services';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ NgClass, ReactiveFormsModule, FontAwesomeModule, ToastComponent ],
+  imports: [ NgClass, ReactiveFormsModule, FontAwesomeModule ],
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
@@ -111,7 +107,12 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('auth', token)
-        this.router.navigateByUrl('movies')
+        this.router.navigateByUrl('movies', {
+          info: {
+            title: `Welcome ${ user.name }`,
+            type: 'success'
+          }
+        })
       },
       error: (error) => {
         this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message, 'Opps...' )

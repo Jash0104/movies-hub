@@ -1,19 +1,31 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Movies } from '../interfaces/movies';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Movie } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MoviesService {  
+
+export class MoviesService {
+
   private apiUrl = "http://localhost:3000/api"
   private token = localStorage.getItem('auth');
   
   constructor(
-    private http: HttpClient
+    private readonly http: HttpClient,
+    private readonly authService: AuthService
   ) {}
-  
+
+  getMovies() {
+    return this.http.get<Movie[]>(`${this.apiUrl}/movies`, {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
+    
   getMovieDetails(id: string): Observable<Movies> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
