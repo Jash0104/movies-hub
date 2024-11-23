@@ -5,7 +5,6 @@ import { ToastService } from '../services/toast.service';
 export const authGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router)
-  const toastService = inject(ToastService)
 
   const user = localStorage.getItem('user')
   const token = localStorage.getItem('auth')
@@ -21,8 +20,6 @@ export const authGuard: CanActivateFn = (route, state) => {
         type: 'error'
     }
   })
-
-
 
   return false;
 };
