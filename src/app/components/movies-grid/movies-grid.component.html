@@ -1,0 +1,21 @@
+<!--
+<div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
+  @for (movie of movies; track $index) {
+    <img src="{{ movie.image}}" alt="" class="rounded-lg w-full h-auto shadow-sm">
+  }
+</div> -->
+
+<div class="grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4">
+  @for (movie of movies; track $index) {
+    <div class="group relative rounded-lg overflow-hidden shadow-sm">
+      <!-- Imagen de la película -->
+      <img src="{{ movie.image }}" alt="{{ movie.title }}" class="w-full h-auto rounded-lg transition-transform duration-300 group-hover:scale-110">
+
+      <!-- Contenedor del título -->
+      <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span class="text-white text-lg font-semibold text-center px-2">{{ movie.title }}</span>
+      </div>
+    </div>
+  }
+</div>
+

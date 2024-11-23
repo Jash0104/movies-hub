@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterOutlet } from '@angular/router';
+import { ToastComponent } from './components/shared/toast/toast.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    // BrowserModule,
-    // BrowserAnimationsModule
-    // NoopAnimationsModule
+    ToastComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

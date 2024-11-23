@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastService } from '../../services/toast.service';
-import { ToastMessage } from '../../interfaces';
+import { ToastService } from '../../../services/toast.service';
+import { ToastMessage } from '../../../interfaces';
 import { NgClass } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { faTriangleExclamation, faCircleInfo, faCheck, faBug } from '@fortawesome/free-solid-svg-icons'

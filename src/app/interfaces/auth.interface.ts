@@ -6,6 +6,10 @@ export interface User {
   password: string
 }
 
+export interface LoggedUser extends User {
+    role: "USER" | "ADMIN"
+}
+
 export interface CreatedUser extends User {
   id: string,
   token: string
@@ -14,4 +18,10 @@ export interface CreatedUser extends User {
 export interface SignInUser {
   email: string,
   password: string
+}
+
+export interface AuthError {
+  error: string,
+  message: string,
+  statusCode: number
 }
