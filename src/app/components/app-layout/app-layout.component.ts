@@ -1,6 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-
 import { MenuOption, ToastMessage } from '../../interfaces';
 import { AuthService, ToastService } from '@/app/services';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -51,6 +51,7 @@ export class AppLayoutComponent implements OnInit {
     return this.menuItems.find(( item ) => item.path === this.router.url )?.title
   }
 
+  
   menuItems: MenuOption[] = [
     {
       title: "Movies",
@@ -65,6 +66,4 @@ export class AppLayoutComponent implements OnInit {
       path: "/favorites"
     }
   ]
-
-
 }
