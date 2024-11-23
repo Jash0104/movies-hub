@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { Movies } from '../../interfaces/movies';
+import { Movie } from '@/app/interfaces';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,13 +12,14 @@ import { Movies } from '../../interfaces/movies';
 export class MovieDetailsComponent implements OnInit{
   @Input() id!: string
 
-  movie: Movies = {
+  movie: Movie = {
     backgroundImage: "",
     description: "",
     director: "",
     duration: "",
     genre: [],
     image: "",
+    id: "",
     mainActors: [],
     qualification: 0,
     releaseDate: "",
@@ -33,9 +34,7 @@ export class MovieDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.moviesService.getMovieDetails(this.id).subscribe({
-      next: (movie: Movies) => {
-        console.log(movie.backgroundImage);
-        
+      next: (movie: Movie) => {
         this.movie = movie
       },
     });
