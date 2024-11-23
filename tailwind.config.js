@@ -23,6 +23,9 @@ module.exports = {
         fall: 'fall 0.3s ease-out forwards',
         fadeIn: 'fadeIn 0.3s ease-in-out',
         fadeOut: 'fadeOut 0.4s ease-in-out',
+      },
+      backgroundImage: {
+        "custom-gradient": 'linear-gradient(145deg, rgba(2,0,36,1) 45%, rgba(255,0,81,1) 100%)',
       }
     },
   },
