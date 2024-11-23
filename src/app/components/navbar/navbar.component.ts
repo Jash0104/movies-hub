@@ -2,11 +2,13 @@ import { Component, Input } from '@angular/core';
 import { LoggedUser, MenuOption } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faVideo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ RouterLink ],
+  imports: [ RouterLink, FontAwesomeModule ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -16,6 +18,10 @@ export class NavbarComponent {
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
+
+  icons = {
+    logo: faVideo
+  }
 
   user: LoggedUser | null = null
   menuState = false
