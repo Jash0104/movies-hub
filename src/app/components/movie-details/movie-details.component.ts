@@ -4,6 +4,7 @@ import { Movie } from '@/app/interfaces';
 import { faBasketShopping, faBookmark, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import Genre from '@/app/interfaces/movies.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details',
@@ -41,7 +42,8 @@ export class MovieDetailsComponent implements OnInit{
   }
   
   constructor(
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,7 @@ export class MovieDetailsComponent implements OnInit{
     if ( qualification <= 5 && qualification >= 4) this.rankColor = "border-green-500"
   }
 
-  formatGenres(genres: Genre[]): Genre[] {
+  private formatGenres(genres: Genre[]): Genre[] {
     return genres.map((genre) => {
       return genre
         .toLowerCase()
@@ -70,4 +72,11 @@ export class MovieDetailsComponent implements OnInit{
     });
   }
   
+  goPurchase() {
+    this.router.navigateByUrl(`movies/${this.id}/purchase`)
+  }
+
+  goRent() {
+    this.router.navigateByUrl(`movies/${this.id}/rent`)
+  }
 }
