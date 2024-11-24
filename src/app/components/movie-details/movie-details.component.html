@@ -29,7 +29,7 @@
           
           <div class="mt-5 md:mt-0 flex items-center">
             <!-- Add wish list -->
-            <button class="rounded-xl mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 py-3 transition-transform duration-300 hover:scale-110">
+            <button class="rounded-xl mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 py-3 transition-transform duration-300 hover:scale-110" (click)="goPurchase()">
               <fa-icon [icon]="faIcons.buy"></fa-icon>
               <div class="ml-5 flex flex-col text-left">
                 <p>Buy</p>
@@ -37,7 +37,7 @@
               </div>
             </button>
             <!-- Buy -->
-            <button class="rounded-xl ml-3 mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold transition-transform duration-300 hover:scale-110">
+            <button class="rounded-xl ml-3 mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold transition-transform duration-300 hover:scale-110" (click)="goRent()">
               <fa-icon [icon]="faIcons.rent"></fa-icon>
               <div class="ml-5 flex flex-col text-left">
                 <p>Rent</p>

@@ -4,6 +4,7 @@ import { AppLayoutComponent } from './components/app-layout/app-layout.component
 import { authGuard } from './guards';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesGridComponent } from './components/movies-grid/movies-grid.component';
+import { MovieTransactionComponent } from './components/movie-transaction/movie-transaction.component';
 
 export const routes: Routes = [
   {
@@ -21,9 +22,17 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: "details/:id",
+        path: ":id",
         canActivate: [authGuard],
         component: MovieDetailsComponent
+      },
+      {
+        path: ":id/purchase",
+        component: MovieTransactionComponent
+      },
+      {
+        path: ":id/rent",
+        component: MovieTransactionComponent
       },
       {
         path: "",

@@ -28,8 +28,6 @@ export class MoviesGridComponent implements OnInit {
   }
 
   navigateToDetails(id: string){
-    console.log("aja");
-    
-    this.route.navigateByUrl(`/movies/details/${id}`)
+    this.route.navigateByUrl(`/movies/${id}`)
   }
 }
