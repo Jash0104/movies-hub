@@ -18,8 +18,8 @@ export const routes: Routes = [
   },
   {
     path: 'movies',
-    component: AppLayoutComponent,
     canActivate: [authGuard],
+    component: AppLayoutComponent,
     children: [
       {
         path: ":id",
@@ -28,6 +28,7 @@ export const routes: Routes = [
       },
       {
         path: ":id/purchase",
+        canActivate: [authGuard],
         component: MovieTransactionComponent
       },
       {
