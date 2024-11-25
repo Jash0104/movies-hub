@@ -25,10 +25,10 @@ export class MovieDetailsComponent implements OnInit{
     image: "",
     id: "",
     mainActors: [],
-    qualification: 0,
+    qualification: 0.0,
     releaseDate: "",
-    rentPrice: 0,
-    salePrice: 0,
+    rentPrice: 0.0,
+    salePrice: 0.0,
     title: ""
   };
 

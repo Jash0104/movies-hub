@@ -2,17 +2,18 @@
   import { MoviesService } from '@/app/services';
   import { Component, Input, OnInit } from '@angular/core';
   import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-  import { faCalendar, faDollar, faDollarSign, faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons';
+  import { faCalendar, faContactCard, faDollar, faDollarSign, faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons';
   import { faAmazonPay, faApplePay, faGoogleWallet, faPaypal } from '@fortawesome/free-brands-svg-icons';
   import { Router } from '@angular/router';
   import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
   import { TransactionsService } from '@/app/services/transactions.service';
   import { PaymentMethod, TransactionType } from '@/app/interfaces/transactions.interface';
+import { CommonModule } from '@angular/common';
 
   @Component({
     selector: 'app-movie-transaction',
     standalone: true,
-    imports: [ FontAwesomeModule, ReactiveFormsModule ],
+    imports: [ FontAwesomeModule, ReactiveFormsModule, CommonModule ],
     templateUrl: './movie-transaction.component.html',
     styleUrl: './movie-transaction.component.css'
   })
@@ -45,14 +46,16 @@
       google: faGoogleWallet,
       apple: faApplePay,
       mail: faMailBulk,
-      phone: faPhone,
+      phone: faContactCard,
       trans: faDollar,
-      date: faCalendar
+      date: faCalendar,
+      contact: faContactCard
     }
 
     transactionForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      phone: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       price: new FormControl(this.price, [Validators.required]),
       paymentMethod: new FormControl(PaymentMethod.PAYPAL, [Validators.required]),
       transactionType: new FormControl(this.transactionType),
