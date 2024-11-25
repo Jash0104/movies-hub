@@ -1,11 +1,11 @@
-<nav class="bg-gray-800">
+<nav class=" bg-black/20">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex items-center">
-        <div class="flex shrink-0 gap-2">
+        <a routerLink="/" class="flex shrink-0 gap-2 cursor-pointer">
             <fa-icon [icon]='icons.logo' class="text-xl text-white"></fa-icon>
             <span class="text-xl text-white">Movie hub</span>
-        </div>
+        </a>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
             @for (item of menuItems; track $index) {
