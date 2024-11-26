@@ -106,6 +106,10 @@ userRole!: "USER" | "ADMIN";
     this.router.navigateByUrl(`movies/${this.id}/rent`)
   }
 
+  updateMovie() {
+    this.router.navigateByUrl(`movies/update/${this.id}`)
+  }
+
   deleteMovie() {
     this.moviesService.deleteMovie(this.id).subscribe({
       next: () => {
@@ -118,6 +122,7 @@ userRole!: "USER" | "ADMIN";
       setTimeout(() => {
         this.router.navigateByUrl('/movies');
       }, 2500);
+
       },
       error: (error) => {
         this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message, 'An error occured while deleting the movie...' )

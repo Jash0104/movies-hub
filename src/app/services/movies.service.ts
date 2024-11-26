@@ -33,4 +33,30 @@ export class MoviesService {
       }
     })
   }
+  
+  createMovie(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(`${this.apiUrl}/movies`, movie, {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
+
+  updateMovie(id: string, movie: Movie): Observable<Movie> {
+    return this.http.patch<Movie>(`${this.apiUrl}/movies/${id}`, {
+      ...movie
+    }, {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
+
+  deleteMovie(id:string) {
+    return this.http.delete<string>(`${this.apiUrl}/movies/${id}`, {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
 }
