@@ -2,7 +2,7 @@
   import { MoviesService } from '@/app/services';
   import { Component, Input, OnInit } from '@angular/core';
   import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-  import { faCalendar, faContactCard, faDollar, faDollarSign, faMailBulk, faPhone } from '@fortawesome/free-solid-svg-icons';
+  import { faCalendar, faContactCard, faDollar, faDollarSign, faMailBulk, faMoneyBill1Wave } from '@fortawesome/free-solid-svg-icons';
   import { faAmazonPay, faApplePay, faGoogleWallet, faPaypal } from '@fortawesome/free-brands-svg-icons';
   import { Router } from '@angular/router';
   import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -49,7 +49,8 @@ import { CommonModule } from '@angular/common';
       phone: faContactCard,
       trans: faDollar,
       date: faCalendar,
-      contact: faContactCard
+      contact: faContactCard,
+      money: faMoneyBill1Wave
     }
 
     transactionForm = new FormGroup({
