@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  isSignUp = true;
+  isSignUp = false;
 
   toggleState() {
     this.isSignUp = !this.isSignUp;
@@ -129,8 +129,8 @@ export class LoginComponent implements OnInit {
   }
 
   sessionForm = new FormGroup({
-    firstName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
-    lastName: this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
+    firstName: !this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
+    lastName: !this.isSignUp ? new FormControl('', [Validators.required]) : new FormGroup(''),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   })
