@@ -70,3 +70,4 @@ Cuando todo está dicho y hecho, ¡puedes cerrar sesión con un clic!
 - **Backend**: Express (porque necesitamos alguien que maneje la taquilla).  
 - **Base de Datos**: Cualquier motor de base de datos que no te deje plantado.  
 - **API REST**: Todo el chisme pasa por la API, como debe ser.  
+

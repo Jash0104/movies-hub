@@ -49,7 +49,7 @@ userRole!: "USER" | "ADMIN";
     edit: faEdit,
     delete: faTrash
   }
-  
+
   constructor(
     private moviesService: MoviesService,
     private readonly router: Router,
@@ -89,7 +89,7 @@ userRole!: "USER" | "ADMIN";
         .join(' ') as Genre;
     });
   }
-  
+
   handleErrors( message: string, title: string ) {
     this.toast.showToast({
       type: 'error',
@@ -120,7 +120,7 @@ userRole!: "USER" | "ADMIN";
         })
 
       setTimeout(() => {
-        this.router.navigateByUrl('/movies');
+        this.router.navigateByUrl('app/movies');
       }, 2500);
 
       },

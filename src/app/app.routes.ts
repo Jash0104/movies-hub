@@ -7,6 +7,7 @@ import { MoviesGridComponent } from './components/movies-grid/movies-grid.compon
 import { MovieTransactionComponent } from './components/movie-transaction/movie-transaction.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateMovieComponent } from './components/create-movie/create-movie.component';
+import { MyMoviesComponent } from './components/my-movies/my-movies.component';
 
 export const routes: Routes = [
   {
@@ -54,6 +55,10 @@ export const routes: Routes = [
       {
         path: 'create-movie',
         component: CreateMovieComponent
+      },
+      {
+        path: 'my-movies',
+        component: MyMoviesComponent
       }
     ]
   },
@@ -62,3 +67,4 @@ export const routes: Routes = [
     component: NotFoundComponent
   }
 ];
+
