@@ -1,6 +1,6 @@
 <div class="w-full h-full">
   <div class="flex items-center justify-center bg-black bg-opacity-40 rounded-lg shadow-lg overflow-hidden min-h-[calc(100vh-9rem)] w-full">
-    <div class="md:flex md:flex-col lg:flex-row my-auto mx-4 items-center justify-center ">
+    <div class="md:flex md:flex-col lg:flex-row my-auto mx-4 items-center justify-center">
       <!-- Poster -->
       <div class="flex md:w-2/5 sm:w-2/4 px-4 m-10 justify-center items-center md:mx-auto sm:mx-auto h-full mx-3">
         <img [src]="movie.image" [alt]="movie.title" class="w-[70%] h-auto object-cover rounded-lg min-h-56 sm:w-[70%] md:max-h-96 md:min-w-full lg:max-h-full">
@@ -47,15 +47,21 @@
               <p>USD ${{movie.rentPrice}}
             </div>
           </button> -->
-          <div class="mt-5 md:mt-0 flex flex-col items-center gap-x-2 font-bold sm:flex-row lg:max-w-96">
-            <button class="flex justify-center items-center rounded-xl my-3 bg-white text-[#020024] p-4 sm:flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-slate-200">
+          <div class="mt-5 md:mt-0 flex flex-col items-center gap-x-3 font-bold sm:flex-row lg:max-w-[30rem]">
+            <button
+              (click)="goRent()"
+              class="flex justify-center items-center rounded-xl my-3 bg-white text-[#020024] p-4 sm:flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-slate-200"
+            >
               <fa-icon [icon]="faIcons.rent"></fa-icon>
               <div class="ml-5 flex flex-col text-left">
                 <!-- bg-[#020024] -->
                 <p>Rent USD ${{ movie.rentPrice }}</p>
               </div>
             </button>
-            <button class="flex justify-center items-center rounded-xl my-3 bg-[#ff0051] text-white p-4 flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-slate-200">
+            <button
+              (click)="goPurchase()"
+              class="flex justify-center items-center rounded-xl my-3 bg-rose-shadow text-white p-4 flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-rose-shadow-dark"
+              >
               <fa-icon [icon]="faIcons.buy"></fa-icon>
               <div class="ml-5 flex flex-col text-left">
                 <p>Buy USD ${{ movie.salePrice }}</p>

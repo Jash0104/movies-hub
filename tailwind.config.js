@@ -33,6 +33,10 @@ module.exports = {
       },
       backgroundImage: {
         "custom-gradient": 'linear-gradient(145deg, rgba(2,0,36,1) 45%, rgba(255,0,81,1) 100%)',
+      },
+      colors: {
+        "rose-shadow": "#ff0051",
+        "rose-shadow-dark": "#ff0051e8"
       }
     },
   },

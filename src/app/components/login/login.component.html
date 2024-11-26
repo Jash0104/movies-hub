@@ -128,14 +128,14 @@
             </div>
 
             <div>
-              <button type="submit" class="flex w-full justify-center rounded-md bg-[#ff0051] px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-[#ff0051e8] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <button type="submit" class="flex w-full justify-center rounded-md bg-rose-shadow px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-rose-shadow-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 {{ isSignUp ? "Create Account" : "Sign In"}}
               </button>
             </div>
           </form>
           @if ( !isSignUp ) {
             <p class="mt-10 text-center text-sm/6 text-slate-300">Don't have an account yet?
-              <strong class="font-semibold text-white hover:text-[#ff0051e8] cursor-pointer" (click)="toggleState()">Create One</strong>
+              <strong class="font-semibold text-white hover:text-rose-shadow cursor-pointer" (click)="toggleState()">Create One</strong>
             </p>
           }
       </div>
