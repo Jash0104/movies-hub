@@ -28,6 +28,8 @@ export class AppLayoutComponent implements OnInit {
     })
 
     this.getPreviousRouterInfo()
+
+    this.addAdminRoute()
   }
 
   //* HANDLE SIGN-IN AND SIGN-UP
@@ -58,12 +60,17 @@ export class AppLayoutComponent implements OnInit {
       path: "/movies"
     },
     {
-      title: "Owned",
+      title: "My movies",
       path: "/my-movies"
-    },
-    {
-      title: "Wish List",
-      path: "/favorites"
     }
   ]
+
+  addAdminRoute() {
+    if ( this.authService.currentUser.role === "ADMIN" ) {
+      this.menuItems.push({
+        title: "Create Movie",
+        path: "/create-movie"
+      })
+    }
+  }
 }
