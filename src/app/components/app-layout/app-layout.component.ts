@@ -4,11 +4,12 @@ import { Router, RouterOutlet } from '@angular/router';
 import { MenuOption, ToastMessage } from '../../interfaces';
 import { AuthService, ToastService } from '@/app/services';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-app-layout',
   standalone: true,
-  imports: [ RouterOutlet, NavbarComponent ],
+  imports: [ RouterOutlet, NavbarComponent, NgClass ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.css'
 })
@@ -30,6 +31,14 @@ export class AppLayoutComponent implements OnInit {
     this.getPreviousRouterInfo()
 
     this.addAdminRoute()
+  }
+
+  get currentPath() {
+    return this.router.url
+  }
+
+  get user() {
+    return this.authService.currentUser
   }
 
   //* HANDLE SIGN-IN AND SIGN-UP
@@ -57,11 +66,11 @@ export class AppLayoutComponent implements OnInit {
   menuItems: MenuOption[] = [
     {
       title: "Movies",
-      path: "/movies"
+      path: "movies"
     },
     {
       title: "My movies",
-      path: "/my-movies"
+      path: "my-movies"
     }
   ]
 
@@ -69,7 +78,7 @@ export class AppLayoutComponent implements OnInit {
     if ( this.authService.currentUser.role === "ADMIN" ) {
       this.menuItems.push({
         title: "Create Movie",
-        path: "/create-movie"
+        path: "create-movie"
       })
     }
   }

@@ -1,0 +1,109 @@
+<div class="w-full h-full text-white">
+  
+  <div class="flex flex-col px-5 py-8 lg:p-10 justify-around bg-black bg-opacity-40 rounded-lg shadow-lg overflow-hidden min-h-[calc(100vh-10rem)] h-full w-full min-w-full">
+    <h1 class="text-center lg:text-start text-4xl font-semibold">Make your histories come to the big screen!</h1>
+    <form class="w-full h-full">
+      <div class="md:flex md:flex-col lg:flex-row my-auto items-center justify-center mx-auto max-w-full md:w-full">
+        <!-- Image -->
+        <div 
+          class="flex md:w-1/4 sm:w-2/4 px-4 m-10 justify-center items-center md:mx-auto sm:mx-auto h-full mx-3"
+        >
+        <div>
+          <input type="file" accept="image/" id="movieImage" class="hidden">
+          <label for="movieImage" class="bg-white/80">Select a image</label>
+        </div>
+
+        <div>
+
+        </div>
+          <!-- <img [src]="movie.image" [alt]="movie.title" class="w-[70%] h-auto object-cover rounded-lg min-h-56 sm:w-[70%] md:max-h-96 md:min-w-full lg:max-h-full">  -->
+        </div>
+
+        <div class="md:w-3/4 flex flex-col p-6 content-center my-auto md:mx-8 max-w-full lg:max-w-[60%] space-y-6">
+          
+            <!-- [formGroup]="sessionForm" (ngSubmit)="onSubmit() -->
+
+            <!-- @if ( isSignUp ) { -->
+              <div class="flex gap-x-1 sm:flex-row flex-col">
+                <div class="w-full">
+                  <label for="firstName" class="block text-sm/6 font-medium text-white">First Name</label>
+                  <div class="mt-2">
+                    <input formControlName="firstName" id="firstName" name="firstName" type="text" autocomplete="name" required class="block w-full rounded-md border-0 p-1.5 text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+                  </div>
+                  <!-- @if (firstName?.errors?.['required'] && firstName?.touched) {
+                    <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                      <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                      <span class="text-xs">Field required</span>
+                    </div>
+                  } -->
+                </div>
+                <div class="w-full mt-6 sm:mt-0">
+                  <label for="lastName" class="block text-sm/6 font-medium text-white">Last Name</label>
+                  <div class="mt-2">
+                    <input formControlName="lastName" id="lastName" name="lastName" type="text" autocomplete="cc-name" required class="block w-full rounded-md border-0 p-1.5 text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+                  </div>
+                  <!-- @if (lastName?.errors?.['required'] && lastName?.touched) {
+                    <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                      <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                      <span class="text-xs">Field required</span>
+                    </div>
+                  } -->
+                </div>
+              </div>
+            <!-- } -->
+
+            <div>
+              <label for="email" class="block text-sm/6 font-medium text-white">Email address</label>
+              <div class="mt-2">
+                <input formControlName="email" id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 p-1.5 text-gray-600  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+              </div>
+              <!-- @if (email?.errors?.['required'] && email?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field required</span>
+                </div>
+              }
+              @if (email?.errors?.['email'] && email?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field must be an email</span>
+                </div>
+              } -->
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <label for="password" class="block text-sm/6 font-medium text-white">Password</label>
+                <!-- @if (!isSignUp) {
+                  <div class="text-sm">
+                    <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                  </div>
+                } -->
+              </div>
+              <div class="mt-2">
+                <input formControlName="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 p-1.5 text-gray-600 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6 outline-0">
+              </div>
+              <!-- @if (password?.errors?.['required'] && password?.touched) {
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon>
+                  <span class="text-xs">Field required</span>
+                </div>
+              } -->
+              <!-- @if (password?.errors?.['minlength'] && password?.touched) { -->
+                <div class="flex animate-fall text-red-500 transition-all duration-500 gap-1 mt-1">
+                  <!-- <fa-icon [icon]='icons.warning' class="text-xs"></fa-icon> -->
+                  <span class="text-xs">Password must contain at least 6 characters</span>
+                </div>
+              <!-- } -->
+            </div>
+
+            <div>
+              <button type="submit" class="flex w-full justify-center rounded-md bg-rose-shadow px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-rose-shadow-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                <!-- {{ isSignUp ? "Create Account" : "Sign In"}} --> Create
+              </button>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

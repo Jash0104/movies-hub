@@ -6,6 +6,7 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { MoviesGridComponent } from './components/movies-grid/movies-grid.component';
 import { MovieTransactionComponent } from './components/movie-transaction/movie-transaction.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateMovieComponent } from './components/create-movie/create-movie.component';
 
 export const routes: Routes = [
   {
@@ -18,29 +19,43 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'movies',
-    canActivate: [authGuard],
+    path: 'app',
     component: AppLayoutComponent,
     children: [
       {
-        path: ":id",
+        path: '',
+        redirectTo: "movies",
+        pathMatch: "full"
+      },
+      {
+        path: 'movies',
         canActivate: [authGuard],
-        component: MovieDetailsComponent
+        children: [
+          {
+            path: ":id",
+            canActivate: [authGuard],
+            component: MovieDetailsComponent
+          },
+          {
+            path: ":id/purchase",
+            canActivate: [authGuard],
+            component: MovieTransactionComponent
+          },
+          {
+            path: ":id/rent",
+            component: MovieTransactionComponent
+          },
+          {
+            path: "",
+            component: MoviesGridComponent
+          }
+        ],
       },
       {
-        path: ":id/purchase",
-        canActivate: [authGuard],
-        component: MovieTransactionComponent
-      },
-      {
-        path: ":id/rent",
-        component: MovieTransactionComponent
-      },
-      {
-        path: "",
-        component: MoviesGridComponent
+        path: 'create-movie',
+        component: CreateMovieComponent
       }
-    ],
+    ]
   },
   {
     path: "**",

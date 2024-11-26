@@ -28,6 +28,6 @@ export class MoviesGridComponent implements OnInit {
   }
 
   navigateToDetails(id: string){
-    this.route.navigateByUrl(`/movies/${id}`)
+    this.route.navigateByUrl(`app/movies/${id}`)
   }
 }

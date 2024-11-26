@@ -99,15 +99,15 @@ userRole!: "USER" | "ADMIN";
   }
 
   goPurchase() {
-    this.router.navigateByUrl(`movies/${this.id}/purchase`)
+    this.router.navigateByUrl(`app/movies/${this.id}/purchase`)
   }
 
   goRent() {
-    this.router.navigateByUrl(`movies/${this.id}/rent`)
+    this.router.navigateByUrl(`app/movies/${this.id}/rent`)
   }
 
   updateMovie() {
-    this.router.navigateByUrl(`movies/update/${this.id}`)
+    this.router.navigateByUrl(`app/movies/update/${this.id}`)
   }
 
   deleteMovie() {
