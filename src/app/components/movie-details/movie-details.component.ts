@@ -6,11 +6,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import Genre from '@/app/interfaces/movies.interface';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from '../shared/modal/modal.component';
+import { ToastService } from '@/app/services';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [ FontAwesomeModule, CommonModule, RouterLink ],
+  imports: [ FontAwesomeModule, CommonModule, RouterLink, MatDialogModule ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
@@ -49,7 +52,9 @@ userRole!: "USER" | "ADMIN";
   
   constructor(
     private moviesService: MoviesService,
-    private readonly router: Router
+    private readonly router: Router,
+    public dialog: MatDialog,
+    private toast: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +63,10 @@ userRole!: "USER" | "ADMIN";
         this.movie = movie
         this.toggleRankColor(movie.qualification)
         this.movie.genre = this.formatGenres(movie.genre)
+      },
+      error: (error) => {
+        this.router.navigateByUrl('/movies')
+        this.handleErrors('Movie not found', 'Opps...')
       },
     });
 
@@ -81,11 +90,54 @@ userRole!: "USER" | "ADMIN";
     });
   }
   
+  handleErrors( message: string, title: string ) {
+    this.toast.showToast({
+      type: 'error',
+      title,
+      message
+    })
+  }
+
   goPurchase() {
     this.router.navigateByUrl(`movies/${this.id}/purchase`)
   }
 
   goRent() {
     this.router.navigateByUrl(`movies/${this.id}/rent`)
+  }
+
+  deleteMovie() {
+    this.moviesService.deleteMovie(this.id).subscribe({
+      next: () => {
+        this.toast.showToast({
+          message: "Movie deleted successfully",
+          title: "DELETE",
+          type: "success"
+        })
+
+      setTimeout(() => {
+        this.router.navigateByUrl('/movies');
+      }, 2500);
+      },
+      error: (error) => {
+        this.handleErrors( Array.isArray(error.error.message) ? error.error.message[0] : error.error.message, 'An error occured while deleting the movie...' )
+      },
+    })
+  }
+
+  openDeleteModal() {
+    const dialog = this.dialog.open(ModalComponent, {
+      width: "300px",
+      data: {
+        title: `You are about to delete ${this.movie.title}!`,
+        message: "This action will delete your awesome movie! Are you sure?",
+        type: "delete"
+      }
+    })
+
+    dialog.afterClosed().subscribe((deleted: boolean) => {
+      if (!deleted) return
+      this.deleteMovie()
+    })
   }
 }
