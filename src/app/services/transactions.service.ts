@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Transaction } from '../interfaces/transactions.interface';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Movie } from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,22 @@ export class TransactionsService {
       ...transactionData
     }, 
     {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
+
+  getRentedMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/transaction/rent`, {
+      headers: {
+        Authorization: this.authService.Auth
+      }
+    })
+  }
+
+  getPurchasedMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/transaction/purchase`, {
       headers: {
         Authorization: this.authService.Auth
       }
