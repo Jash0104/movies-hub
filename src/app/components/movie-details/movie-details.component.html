@@ -1,42 +1,90 @@
-<div class="container px-4 py-8 h- bg-gradient-to-r from-blue-950 to-gray-800">
-  <div class="bg-black bg-opacity-30 rounded-lg shadow-lg overflow-hidden">
-    <div class="md:flex">
+<div class="w-full h-full">
+  <div class="flex items-center justify-center bg-black bg-opacity-40 rounded-lg shadow-lg overflow-hidden min-h-[calc(100vh-9rem)] w-full">
+    <div class="md:flex md:flex-col lg:flex-row my-auto mx-4 items-center justify-center">
       <!-- Poster -->
-      <div class="md:w-1/3">
-        <img [src]="movie.image" [alt]="movie.title" class="w-full h-full object-cover">
+      <div class="flex md:w-2/5 sm:w-2/4 px-4 m-10 justify-center items-center md:mx-auto sm:mx-auto h-full mx-3">
+        <img [src]="movie.image" [alt]="movie.title" class="w-[70%] h-auto object-cover rounded-lg min-h-56 sm:w-[70%] md:max-h-96 md:min-w-full lg:max-h-full">
       </div>
 
       <!-- Details -->
-      <div class="md:w-2/3 p-6">
-        <div class="flex flex-wrap justify-between items-start">
+      <div class="md:w-3/4 flex flex-col p-6 content-center my-auto md:mx-8">
+        <div>
           <div class="flex-1">
             <h1 class="text-3xl font-bold text-white">{{ movie.title }}</h1>
             <div class="mt-2 text-white">
               <span class="mr-4">{{ movie.releaseDate }}</span>
-              <span>{{ movie.genre.join(', ') }}</span>
+              <span class="mr-4">{{ movie.genre.join(', ') }}</span>
+              <span>{{ movie.duration }}</span>
             </div>
           </div>
 
           <!-- User Score -->
-          <div class="mt-4 md:mt-0 flex items-center">
-            <div [class]="'rounded-full w-16 h-16 flex items-center justify-center text-white font-bold '">
-              {{ movie.qualification }}
+          <div class="my-4 md:mt-0 flex items-center">
+            <div class="rounded-full mt-5 px-4 py-4 h-13 mr-5 bg-black/25 backdrop-blur-sm border-4 flex {{this.rankColor}} items-center justify-center text-white font-bold">
+              {{
+                movie.qualification.toString().length === 1
+                  ? movie.qualification + ".0"
+                  : movie.qualification
+              }}
             </div>
-            <span class="ml-2 text-sm text-white">User Score</span>
+            <span class="ml-2 mt-5 text-sm text-white">User Score</span>
+          </div>
+          <!-- Interactions -->
+
+          <!-- Add wish list -->
+          <!-- <button class="rounded-xl mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 transition-transform duration-300 hover:scale-110" (click)="goPurchase()">
+            <fa-icon [icon]="faIcons.buy"></fa-icon>
+            <div class="ml-5 flex flex-col text-left">
+              <p>Buy</p>
+              <p>USD ${{movie.salePrice}}</p>
+            </div>
+          </button> -->
+          <!-- Buy -->
+          <!-- <button class="rounded-xl ml-3 mt-5 px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold transition-transform duration-300 hover:scale-110" (click)="goRent()">
+            <fa-icon [icon]="faIcons.rent"></fa-icon>
+            <div class="ml-5 flex flex-col text-left">
+              <p>Rent</p>
+              <p>USD ${{movie.rentPrice}}
+            </div>
+          </button> -->
+          <div class="mt-5 md:mt-0 flex flex-col items-center gap-x-3 font-bold sm:flex-row lg:max-w-[30rem]">
+            <button
+              (click)="goRent()"
+              class="flex justify-center items-center rounded-xl my-3 bg-white text-[#020024] p-4 sm:flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-slate-200"
+            >
+              <fa-icon [icon]="faIcons.rent"></fa-icon>
+              <div class="ml-5 flex flex-col text-left">
+                <!-- bg-[#020024] -->
+                <p>Rent USD ${{ movie.rentPrice }}</p>
+              </div>
+            </button>
+            <button
+              (click)="goPurchase()"
+              class="flex justify-center items-center rounded-xl my-3 bg-rose-shadow text-white p-4 flex-1 w-full transition-all duration-300 hover:scale-105 hover:bg-rose-shadow-dark"
+              >
+              <fa-icon [icon]="faIcons.buy"></fa-icon>
+              <div class="ml-5 flex flex-col text-left">
+                <p>Buy USD ${{ movie.salePrice }}</p>
+              </div>
+            </button>
           </div>
         </div>
 
         <!-- Synopsis -->
         <div class="mt-6">
-          <h2 class="text-white font-semibold text-white mb-2">Overview</h2>
+          <h2 class="text-white font-semibold mb-2">Overview</h2>
           <p class="text-white leading-relaxed">{{ movie.description }}</p>
         </div>
 
         <!-- Crew -->
-        <div class="mt-6 grid grid-cols-2 gap-4">
+        <div class="mt-10 grid grid-cols-2 ">
           <div>
-            <h3 class="text-sm font-semibold text-white">Director</h3>
-            <p class="text-white">{{ movie.director }}</p>
+            <p class="text-white font-semibold">{{ movie.director }}</p>
+            <h3 class="text-sm italic text-white">Director</h3>
+          </div>
+          <div>
+            <p class="text-white font-semibold">{{ movie.mainActors.join(", ") }}</p>
+            <h3 class="text-sm italic text-white">Actors</h3>
           </div>
           <div>
           </div>

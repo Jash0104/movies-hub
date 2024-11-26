@@ -1,10 +1,11 @@
-<nav class="bg-gray-800">
+<nav class=" bg-black/20">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       <div class="flex items-center">
-        <div class="shrink-0">
-          <img class="size-8" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-        </div>
+        <a routerLink="/" class="flex shrink-0 gap-2 cursor-pointer">
+            <fa-icon [icon]='icons.logo' class="text-xl text-white"></fa-icon>
+            <span class="text-xl text-white">Movie hub</span>
+        </a>
         <div class="hidden md:block">
           <div class="ml-10 flex items-baseline space-x-4">
             @for (item of menuItems; track $index) {
@@ -59,7 +60,7 @@
                 <!-- Active: "bg-gray-100 outline-none", Not Active: "" -->
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                <a routerLink="/login" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2" (click)="onSignOut()">Sign out</a>
               </div>
             }
           </div>

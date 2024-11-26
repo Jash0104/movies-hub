@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '@/app/services';
 import { Movie } from '@/app/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies-grid',
@@ -12,7 +13,8 @@ import { Movie } from '@/app/interfaces';
 export class MoviesGridComponent implements OnInit {
 
   constructor(
-    private readonly moviesService: MoviesService
+    private readonly moviesService: MoviesService,
+    private readonly route: Router
   ) {}
 
   movies: Movie[] = []
@@ -23,7 +25,9 @@ export class MoviesGridComponent implements OnInit {
         this.movies = movies
       }
     })
-    
   }
 
+  navigateToDetails(id: string){
+    this.route.navigateByUrl(`/movies/${id}`)
+  }
 }

@@ -1,0 +1,94 @@
+<form [formGroup]="transactionForm" (ngSubmit)="submit()" class="min-h-[calc(100vh-7rem)] h-full overflow-hidden">
+  <div class="container p-2 text-white w-full flex justify-center h-full">
+    <div class="mt-10 w-full md:flex md:flex-col lg:flex-row ">
+      <div class="flex flex-col">
+        <div class="basis-1/3 bg-black bg-opacity-30 p-3 rounded-lg relative">
+          <h1 class="text-3xl text-center">{{movie.title}}</h1>
+          <p class="text-xl text-center mt-2">Total USD: $ {{ this.price }}</p>
+        </div>
+
+        <div class="mt-5 container p-2 text-white">
+          <!-- <form [formGroup]="transactionForm"> -->
+            <h3 class="mb-5 text-2xl font-medium text-gray-900 dark:text-white text-center">Choose a payment method</h3>
+            <ul class="flex w-full gap-6 flex-col ">
+              <li>
+                <input type="radio" formControlName="paymentMethod" id="paypal" name="paymentMethod" value="PAYPAL" class="hidden peer" required />
+                  <label for="paypal" class="rounded-xl   w-full cursor-pointer px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 transition-transform duration-300 hover:scale-110 dark:peer-checked:text-pink-600 dark:bg-opacity-30 dark:hover:bg-indigo-950">
+                    <div class="flex">
+                      <fa-icon [icon]="icons.paypal" class="mr-3"></fa-icon>
+                      <div class="w-full text-lg font-semibold">PayPal</div>
+                    </div>
+                </label>
+              </li>
+              <li>
+                <input type="radio" formControlName="paymentMethod" id="amazon" name="paymentMethod" value="AMAZON" class="hidden peer">
+                <label for="amazon" class="rounded-xl w-full cursor-pointer px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 transition-transform duration-300 hover:scale-110 dark:peer-checked:text-pink-600 dark:bg-opacity-30 dark:hover:bg-indigo-950">
+                  <div class="flex">
+                    <fa-icon [icon]="icons.amazon" class="mr-3"></fa-icon>
+                    <div class="w-full text-lg font-semibold">Amazon</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <input type="radio" formControlName="paymentMethod" id="google-pay" name="paymentMethod" value="GOOGLE_WALLET" class="hidden peer">
+                <label for="google-pay" class="rounded-xl w-full cursor-pointer px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 transition-transform duration-300 hover:scale-110 dark:peer-checked:text-pink-600 dark:bg-opacity-30 dark:hover:bg-indigo-950">
+                  <div class="flex">
+                    <fa-icon [icon]="icons.google" class="mr-3 w-"></fa-icon>
+                    <div class="w-full text-lg font-semibold">Google Wallet</div>
+                  </div>
+                </label>
+              </li>
+              <li>
+                <input type="radio" formControlName="paymentMethod" id="apple" name="paymentMethod" value="APPLE_PAY" class="hidden peer">
+                <label for="apple" class="rounded-xl w-full cursor-pointer px-4 py-3 mr-5 bg-indigo-950 flex items-center justify-center text-white font-bold hover:px-4 transition-transform duration-300 hover:scale-110 dark:peer-checked:text-pink-600 dark:bg-opacity-30 dark:hover:bg-indigo-950">
+                  <div class="flex">
+                    <fa-icon [icon]="icons.apple" class="mr-3 w-"></fa-icon>
+                    <div class="w-full text-lg font-semibold">Apple Pay</div>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          <!-- </form> -->
+        </div>
+      </div>
+
+      <div class="flex text-left w-full justify-center ">
+        <div class="lg:w-3/4 md:w-full p-3">
+          <label for="email-address-icon" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white"><fa-icon [icon]="icons.mail" class="mr-2 "></fa-icon>Email</label>
+            <div class="flex">
+              <input type="email" formControlName="email" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-opacity-10  dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com">
+            </div>
+            <br>
+
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><fa-icon [icon]="icons.contact" class="mr-2 "></fa-icon>Full Name</label>
+            <div class="flex">
+              <input type="text" formControlName="name" class="mr-2 w-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 basis-1/2 p-2.5 dark:bg-opacity-10 dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" >
+
+              <input type="text" formControlName="lastName" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 basis-1/2 focus:border-blue-500 w-full p-2.5 dark:bg-opacity-10 dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe">
+            </div>
+            <br>
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><fa-icon [icon]="icons.trans" class="mr-2 "></fa-icon>Transaction type</label>
+            <input type="text" id="email-address-icon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 basis-4/5 focus:border-blue-500 w-full p-2.5 dark:bg-opacity-10  dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled [value]="transactionType">
+
+              @if (transactionType === "RENTAL") {
+              <br>
+                <label class="mt-6 block mb-2 text-sm font-medium text-gray-900 dark:text-white"><fa-icon [icon]="icons.date" class="mr-2 "></fa-icon>Rental Period</label>
+                <div id="date-range-picker" date-rangepicker class="flex items-center">
+                  <input type="date" class="border rounded-full w-1/2 bg-white bg-opacity-10 p-1 border-transparent">
+                  <span class="text-white m-2">To</span>
+                  <input type="date" class="border rounded-full w-1/2 bg-white bg-opacity-10 p-1 border-transparent">
+                </div>
+              }
+              <button type="submit" class="mt-10 justify-center p-3 rounded-full w-full bg-pink-900"
+              [ngClass]="{
+                'bg-pink-900': transactionForm.valid,
+                'bg-pink-950': !transactionForm.valid
+              }"
+              [disabled]="!transactionForm.valid">
+              {{ transactionType === "RENTAL" ? "RENT" : "PURCHASE" }}
+              </button>
+            </div>
+      </div>
+    </div>
+  </div>
+</form>
