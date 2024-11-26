@@ -1,20 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
-import { Movie } from '@/app/interfaces';
-import { faBasketShopping, faBookmark, faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { LoggedUser, Movie } from '@/app/interfaces';
+import { faArrowLeft, faBasketShopping, faBookmark, faCartShopping, faEdit, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import Genre from '@/app/interfaces/movies.interface';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [ FontAwesomeModule ],
+  imports: [ FontAwesomeModule, CommonModule, RouterLink ],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
 export class MovieDetailsComponent implements OnInit{
   @Input() id!: string
+
+userRole!: "USER" | "ADMIN";
 
   movie: Movie = {
     backgroundImage: "",
@@ -38,7 +41,10 @@ export class MovieDetailsComponent implements OnInit{
     buy: faCartShopping,
     rent: faBasketShopping,
     heart: faHeart,
-    save: faBookmark
+    save: faBookmark,
+    back: faArrowLeft,
+    edit: faEdit,
+    delete: faTrash
   }
   
   constructor(
@@ -54,6 +60,9 @@ export class MovieDetailsComponent implements OnInit{
         this.movie.genre = this.formatGenres(movie.genre)
       },
     });
+
+    const userData = JSON.parse(localStorage.getItem("user")!) as LoggedUser
+    this.userRole = userData.role
   }
 
   toggleRankColor(qualification: number) {
