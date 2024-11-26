@@ -5,6 +5,7 @@ import { authGuard } from './guards';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { MoviesGridComponent } from './components/movies-grid/movies-grid.component';
 import { MovieTransactionComponent } from './components/movie-transaction/movie-transaction.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
@@ -41,4 +42,8 @@ export const routes: Routes = [
       }
     ],
   },
+  {
+    path: "**",
+    component: NotFoundComponent
+  }
 ];

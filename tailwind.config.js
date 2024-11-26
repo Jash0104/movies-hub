@@ -33,6 +33,7 @@ module.exports = {
       },
       backgroundImage: {
         "custom-gradient": 'linear-gradient(145deg, rgba(2,0,36,1) 45%, rgba(255,0,81,1) 100%)',
+        "not-found-radial": 'radial-gradient(rgb(3, 0, 56), rgba(36, 0, 33, 0.26));'
       }
     },
   },
