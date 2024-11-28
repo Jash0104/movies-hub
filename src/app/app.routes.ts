@@ -8,6 +8,7 @@ import { MovieTransactionComponent } from './components/movie-transaction/movie-
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateMovieComponent } from './components/create-movie/create-movie.component';
 import { MyMoviesComponent } from './components/my-movies/my-movies.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -44,16 +45,19 @@ export const routes: Routes = [
           },
           {
             path: ":id/rent",
+            canActivate: [authGuard],
             component: MovieTransactionComponent
           },
           {
             path: "",
+            canActivate: [authGuard],
             component: MoviesGridComponent
           }
         ],
       },
       {
         path: 'create-movie',
+        canActivate: [authGuard, adminGuard],
         component: CreateMovieComponent
       },
       {
