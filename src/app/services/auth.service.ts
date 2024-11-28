@@ -11,7 +11,8 @@ import { ToastService } from './toast.service';
 })
 export class AuthService {
 
-  private apiUrl = "http://localhost:3000/api"
+  private apiUrl = "https://movie-catalog-production-7b7a.up.railway.app/api"
+  // private apiUrl = "http://localhost:3000/api"
 
   constructor(
     private readonly http: HttpClient,

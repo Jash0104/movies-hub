@@ -6,6 +6,9 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
 import { MoviesGridComponent } from './components/movies-grid/movies-grid.component';
 import { MovieTransactionComponent } from './components/movie-transaction/movie-transaction.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateMovieComponent } from './components/create-movie/create-movie.component';
+import { MyMoviesComponent } from './components/my-movies/my-movies.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -18,32 +21,54 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'movies',
-    canActivate: [authGuard],
+    path: 'app',
     component: AppLayoutComponent,
     children: [
       {
-        path: ":id",
+        path: '',
+        redirectTo: "movies",
+        pathMatch: "full"
+      },
+      {
+        path: 'movies',
         canActivate: [authGuard],
-        component: MovieDetailsComponent
+        children: [
+          {
+            path: ":id",
+            canActivate: [authGuard],
+            component: MovieDetailsComponent
+          },
+          {
+            path: ":id/purchase",
+            canActivate: [authGuard],
+            component: MovieTransactionComponent
+          },
+          {
+            path: ":id/rent",
+            canActivate: [authGuard],
+            component: MovieTransactionComponent
+          },
+          {
+            path: "",
+            canActivate: [authGuard],
+            component: MoviesGridComponent
+          }
+        ],
       },
       {
-        path: ":id/purchase",
-        canActivate: [authGuard],
-        component: MovieTransactionComponent
+        path: 'create-movie',
+        canActivate: [authGuard, adminGuard],
+        component: CreateMovieComponent
       },
       {
-        path: ":id/rent",
-        component: MovieTransactionComponent
-      },
-      {
-        path: "",
-        component: MoviesGridComponent
+        path: 'my-movies',
+        component: MyMoviesComponent
       }
-    ],
+    ]
   },
   {
     path: "**",
     component: NotFoundComponent
   }
 ];
+

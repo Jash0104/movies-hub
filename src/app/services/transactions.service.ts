@@ -9,7 +9,8 @@ import { Movie } from '../interfaces';
   providedIn: 'root'
 })
 export class TransactionsService {
-  private apiUrl = "http://localhost:3000/api"
+  private apiUrl = "https://movie-catalog-production-7b7a.up.railway.app/api"
+  // private apiUrl = "http://localhost:3000/api"
 
   constructor(
     private http: HttpClient,

@@ -11,8 +11,9 @@ import { Observable } from 'rxjs';
 
 export class MoviesService {
 
-  private apiUrl = "http://localhost:3000/api"
-  
+  private apiUrl = "https://movie-catalog-production-7b7a.up.railway.app/api"
+  // private apiUrl = "http://localhost:3000/api"
+
   constructor(
     private readonly http: HttpClient,
     private readonly authService: AuthService
@@ -25,7 +26,7 @@ export class MoviesService {
       }
     })
   }
-    
+
   getMovieDetails(id: string): Observable<Movie> {
     return this.http.get<Movie>(`${this.apiUrl}/movies/${id}`, {
       headers: {
@@ -33,11 +34,11 @@ export class MoviesService {
       }
     })
   }
-  
-  createMovie(movie: Movie): Observable<Movie> {
+
+  createMovie(movie: FormData): Observable<Movie> {
     return this.http.post<Movie>(`${this.apiUrl}/movies`, movie, {
       headers: {
-        Authorization: this.authService.Auth
+        Authorization: this.authService.Auth,
       }
     })
   }

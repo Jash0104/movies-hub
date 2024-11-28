@@ -107,7 +107,7 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('auth', token)
-        this.router.navigateByUrl('movies', {
+        this.router.navigateByUrl('app', {
           info: {
             title: `Welcome ${ user.name }`,
             type: 'success'

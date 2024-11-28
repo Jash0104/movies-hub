@@ -49,7 +49,7 @@ userRole!: "USER" | "ADMIN";
     edit: faEdit,
     delete: faTrash
   }
-  
+
   constructor(
     private moviesService: MoviesService,
     private readonly router: Router,
@@ -89,7 +89,7 @@ userRole!: "USER" | "ADMIN";
         .join(' ') as Genre;
     });
   }
-  
+
   handleErrors( message: string, title: string ) {
     this.toast.showToast({
       type: 'error',
@@ -99,15 +99,15 @@ userRole!: "USER" | "ADMIN";
   }
 
   goPurchase() {
-    this.router.navigateByUrl(`movies/${this.id}/purchase`)
+    this.router.navigateByUrl(`app/movies/${this.id}/purchase`)
   }
 
   goRent() {
-    this.router.navigateByUrl(`movies/${this.id}/rent`)
+    this.router.navigateByUrl(`app/movies/${this.id}/rent`)
   }
 
   updateMovie() {
-    this.router.navigateByUrl(`movies/update/${this.id}`)
+    this.router.navigateByUrl(`app/movies/update/${this.id}`)
   }
 
   deleteMovie() {
@@ -120,7 +120,7 @@ userRole!: "USER" | "ADMIN";
         })
 
       setTimeout(() => {
-        this.router.navigateByUrl('/movies');
+        this.router.navigateByUrl('app/movies');
       }, 2500);
 
       },

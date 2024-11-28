@@ -1,16 +1,16 @@
 <div class="w-full h-full">
   @if (userRole == "ADMIN") {
-    <div class="flex w-full ">
-      <button routerLink="/movies" class="text-white lg:text-lg md:text-lg items-center m-3 p-3 mx-0 rounded-lg bg-black bg-opacity-40 flex align-center justify-center w-[10%] sm:text-2xs sm:px-max hover:bg-opacity-80 hover:bg-blue-950 mt-0">
-        <fa-icon [icon]="faIcons.back"  [ngStyle]="{ color: '#ffff' }" class="mr-2"></fa-icon> 
+    <div class="flex w-full max-h-16">
+      <a routerLink="/app/movies" class="text-white flex justify-center gap-x-3 lg:text-base font-semibold items-center my-3 mx-0 py-3 px-5 rounded-lg bg-black/5 shadow-indigo-800 shadow bg-opacity-70 sm:text-2xs sm:px-max hover:bg-opacity-80 hover:bg-blue-950">
+        <fa-icon [icon]="faIcons.back"></fa-icon> 
         Back
-      </button>
-      <div class="flex w-[90%] justify-end">
-        <button class="text-[#030024] flex lg:text-lg md:text-lg justify-end m-3 p-3 px-5 rounded-lg bg-white bg-opacity-70 gap-x-3 font-semibold hover:bg-white m:text-2xs" (click)="updateMovie()">
+      </a>
+      <div class="flex justify-end ml-auto">
+        <button class="text-[#030024] flex items-center lg:text-base justify-end m-3 p-3 px-5 rounded-lg bg-white bg-opacity-70 gap-x-3 font-semibold hover:bg-white m:text-2xs" (click)="updateMovie()">
           <fa-icon [icon]="faIcons.edit"  [ngStyle]="{ color: '#030024' }"></fa-icon> 
           Edit
         </button>
-        <button class="text-white flex gap-x-3 lg:text-lg md:text-lg m-3 mx-0 p-3 px-5 rounded-lg bg-rose-shadow bg-opacity-40 hover:bg-[#b0124f] sm:text-2xs" (click)="openDeleteModal()">
+        <button class="text-white flex items-center gap-x-3 lg:text-base m-3 mx-0 p-3 px-5 rounded-lg bg-rose-shadow bg-opacity-40 hover:bg-[#b0124f] sm:text-2xs" (click)="openDeleteModal()">
           <fa-icon [icon]="faIcons.delete"  [ngStyle]="{ color: '#ffff' }"></fa-icon> 
           Delete
         </button>
@@ -18,10 +18,12 @@
     </div>
   }
   
-  <div class="flex items-center justify-center bg-black bg-opacity-40 rounded-lg shadow-lg overflow-hidden min-h-[calc(100vh-9rem)] w-full">
+  <div class="flex items-center justify-center bg-black bg-opacity-40 rounded-lg shadow-lg overflow-hidden min-h-[calc(100vh-10rem)] w-full">
     <div class="md:flex md:flex-col lg:flex-row my-auto mx-4 items-center justify-center">
       <!-- Poster -->
-      <div class="flex md:w-2/5 sm:w-2/4 px-4 m-10 justify-center items-center md:mx-auto sm:mx-auto h-full mx-3">
+      <div 
+        class="flex md:w-2/5 sm:w-2/4 px-4 m-10 justify-center items-center md:mx-auto sm:mx-auto h-full mx-3"
+      >
         <img [src]="movie.image" [alt]="movie.title" class="w-[70%] h-auto object-cover rounded-lg min-h-56 sm:w-[70%] md:max-h-96 md:min-w-full lg:max-h-full"> 
       </div>
 

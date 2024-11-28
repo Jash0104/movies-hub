@@ -11,12 +11,12 @@
           <h1 class="text-2xl text-center font-semibold">{{movie.title}}</h1>
           <p class="text-lg text-center mt-2">Total USD: $ {{ this.price }}</p>
         </div>
-      </div> 
+      </div>
     </div>
     <div class="flex text-left justify-center">
       <div class="flex bg-black/20 rounded-lg p-3 max-w-full">
         <div class="flex flex-col justify-around p-4 bg-white/20 backdrop-blur-sm rounded-lg min-w-full min-h-full h-full lg:w-3/4 md:w-full  px-10 ">
-          <h1 class="my-5 text-4xl font-semibold">  
+          <h1 class="my-5 text-4xl font-semibold">
             {{
               transactionType === "RENTAL"
               ? "You can take it but don't forget to bring it back"
@@ -67,11 +67,12 @@
                   </label>
                 </li>
               </ul>
-            </div> 
+            </div>
             <label for="email-address-icon" class="flex mb-2 text-sm font-medium text-gray-900 dark:text-white"><fa-icon [icon]="icons.mail" class="mr-2 "></fa-icon>Email</label>
             <div class="flex">
               <input type="email" formControlName="email" id="email-address-icon" class="bg-gray-50 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-opacity-10  dark:border-transparent dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-white outline-0 transition-all duration-300" placeholder="name@flowbite.com">
             </div>
+            <br>
 
             <br>
 
@@ -89,7 +90,7 @@
                   <input type="date" class="border rounded-lg basis-[calc(50%-1.075rem)] bg-white bg-opacity-10 p-1 border-transparent mt-2 lg:mt-0">
                 </div>
               }
-              
+
           </div>
           <div>
             <button type="submit" class="mt-10 justify-center p-3 rounded-lg w-full bg-pink-900"
@@ -97,13 +98,12 @@
                 'bg-rose-shadow': transactionForm.valid,
                 'bg-pink-950': !transactionForm.valid
               }"
-              [disabled]="!transactionForm.valid"
-            >
-                {{ transactionType === "RENTAL" ? "Rent" : "Purchase" }}
-            </button>
-          </div>
-        </div>
+              [disabled]="!transactionForm.valid">
+              {{ transactionType === "RENTAL" ? "RENT" : "PURCHASE" }}
+              </button>
+            </div>
       </div>
+    </div>
     </div>
   </div>
 </form>
